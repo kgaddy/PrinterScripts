@@ -40,7 +40,7 @@ class PrinterProtocol:
 			s = self.ser.readline();
 			if s == '':
 				break;
-			print("From Printer: " + s[:-1]);
+			print("1. From Printer: " + s[:-1]);
 	def readUntilOkOrError(self):
 		while True:
 			s = self.ser.readline();
@@ -51,7 +51,7 @@ class PrinterProtocol:
 			if s.lower() == "ok\n":
 				return True;
 			if(s != ''):
-				print("From Printer: " + s[:-1]);
+				print("2. From Printer: " + s[:-1]);
 			if tag.lower() == "error":
 				return False;
 	def sendCmd(self, cmd):

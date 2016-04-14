@@ -5,9 +5,8 @@ from Printer3DLib import *
 args = ArgsParse();
 
 baud = args.getValue("baud", 115200);
-port = args.getValue("port", '/dev/ttyACM0');
-#port = args.getValue("port", '/dev/tty.usbmodem1411'); //mac serial port
-
+#port = args.getValue("port", '/dev/ttyACM0');
+port = args.getValue("port", '/dev/tty.usbmodem1411'); #mac serial port
 PORT_NUMBER = int(args.getValue("http_port", 8081));
 
 
@@ -63,6 +62,7 @@ class myHandler(BaseHTTPRequestHandler):
 			self.send_response(200 if cmdRes["ok"] else 500);
 			self.end_headers()
 			self.wfile.write(json.dumps(res));
+			
 			return			
 			
 printer = PrinterProtocol(port=port, baud=baud, timeout=0.5);

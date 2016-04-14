@@ -45,7 +45,7 @@ class PrinterProtocol:
 			s = self.ser.readline();
 			if s == '':
 				break;
-			self.logger.log("From Printer: " + s[:-1]);
+			self.logger.log("3. From Printer: " + s[:-1]);
 	def readUntilOkOrError(self):
 		while True:
 			s = self.ser.readline();
@@ -56,7 +56,7 @@ class PrinterProtocol:
 			if s.lower() == "ok\n":
 				return True;
 			if(s != ''):
-				self.logger.log("From Printer: " + s[:-1]);
+				self.logger.log("4. From Printer: " + s[:-1]);
 			if tag.lower() == "error":
 				return False;
 	def readUntilOkOrError(self):
@@ -71,7 +71,8 @@ class PrinterProtocol:
 				return {"ok": True, "data": lines};
 			if(s != ''):
 				lines += [s[:-1] if s[-1:] == "\n" else s];
-				self.logger.log("From Printer: " + s[:-1]);
+				self.logger.log("5. From Printer: " + s[:-1]);
+				return {"ok": True, "data":  s[:-1]};
 			if tag.lower() == "error":
 				return {"ok": False, "data": lines};
 	def sendCmd(self, cmd):
